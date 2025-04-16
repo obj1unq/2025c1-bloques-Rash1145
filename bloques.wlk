@@ -45,6 +45,7 @@ object miAsserter {
 }
 
 object roque {
+  var property aves = #{pepita, pepon} 
 	var ave = pepita
 	var cenas = 0
 	
@@ -54,7 +55,10 @@ object roque {
 	}
 	
 	method alimentar(alimento) {
-		ave.comer(alimento)
+    aves.forEach({
+      ave =>
+      ave.comer(alimento)
+    })
 		cenas = cenas + 1
 	}
 
@@ -71,6 +75,17 @@ object roque {
 
   method entrenar(){
     rutina.apply(ave)
+  }
+
+  method avesConMasDe(energia) {
+    return aves.filter({ave =>
+    ave.energia() > energia
+    })
+  }
+
+  method energiaDeAves(){
+    return aves.map({ave => //devuelve una lista
+    ave.energia()})
   }
 }
 
