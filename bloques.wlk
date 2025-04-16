@@ -43,3 +43,70 @@ object miAsserter {
     }
 
 }
+
+object roque {
+	var ave = pepita
+	var cenas = 0
+	
+	method ave(_ave) {
+		ave = _ave
+		cenas = 0
+	}
+	
+	method alimentar(alimento) {
+		ave.comer(alimento)
+		cenas = cenas + 1
+	}
+
+	method cenas() {
+	  return cenas
+	}
+
+  var rutina = {}
+
+  method  rutina(_rutina){
+    rutina = _rutina
+  }
+
+
+  method entrenar(){
+    rutina.apply(ave)
+  }
+}
+
+object pepon {
+  var energia = 30
+
+	var ultima_cena = alpiste
+	
+	method energia() {
+		return energia
+	}
+		
+	method comer(comida) {
+		if (comida == ultima_cena){
+			self.error("Ya comi eso la ultima vez master, dame otra cosa")
+		}
+		energia += energia + comida.energiaQueAporta() / 2
+		ultima_cena = comida
+	}
+
+	method energia_para_volar(distancia){
+		return 20 + 2*distancia
+	}
+		
+	method volar(distancia) {
+    self.validarVolar(distancia)
+		energia = energia - self.energia_para_volar(distancia)
+	}
+
+  method validarVolar(distancia) {
+    if (energia < self.energia_para_volar(distancia)) {
+      self.error("No puedo volar esta distancia")
+    }
+  }
+
+	method puedo_volar(distancia){
+		return energia >= self.energia_para_volar(distancia)
+  }
+}
